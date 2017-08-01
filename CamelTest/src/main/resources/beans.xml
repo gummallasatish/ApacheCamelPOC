@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:camel="http://camel.apache.org/schema/spring"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   					   http://camel.apache.org/schema/spring 
+        				   http://camel.apache.org/schema/spring/camel-spring.xsd">
+        				   
+        			<bean id="springtest" class="com.cameltest.camelBean.SpringCamelController">
+							 <property name="springtestController" ref="myGreeter"/> 
+					</bean>
+			   
+        				   <camelContext xmlns="http://camel.apache.org/schema/spring" trace="false">
+        				  	    <camel:template id="testtemplate"/>
+        				   		<route >			   		
+	        				   		<from uri="direct:start"/>
+	        				   			<!-- <bean ref="springtest" method="execute" /> -->
+	        				   			 
+	        				   	     <to uri="http://localhost:8080/AppTest/test/getDetails/1234" />          				   	           				   			
+        				   		</route>
+        				    </camelContext>
+        				   
+     	
+		 <bean id="myGreeter" class="com.cameltest.service.impl.SpringTestControllerImpl"/> 
+		 <bean id="test" class="com.cameltest.service.impl.LoginServiceImpl"/>
+		 
+		 
+			
+		
+</beans>
